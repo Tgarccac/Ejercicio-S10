@@ -1,0 +1,41 @@
+// Array de alumnos presentes en clase
+const alumnos = [
+  "Alicia Martín", "Ana García", "Beatriz García", "Carlos Calvo", "Cristina Gema",
+  "David Peinado", "Diego Herrera", "Diego Carrasco", "Dorian David", "Eloy Sánchez",
+  "Fernando Mejías", "Gonzalo Rincón", "Guillermo Sohrabi", "Hector Enrique", "Jorge Alejandro",
+  "Juan Carlos", "Juan José Leguineche", "Luc", "Luis Martín", "Marta Acitores", "Martina Gómez",
+  "Paula Pascual", "Pedro", "Quentin", "Rubén Álamo", "Teresa García", "Virginia García",
+  "Sara Isabel", "Álvaro Iglesias", "Rafael Pecino", "Hodei Medina", "Samuel Gil", "Diego Villena"
+];
+
+// Función para emparejar de forma aleatoria en tríos
+function emparejarAlumnosEnTrios(alumnos) {
+  let trios = [];
+  let alumnosTemp = [...alumnos];
+
+  while (alumnosTemp.length >= 3) {
+    const trio = [];
+    for (let i = 0; i < 3; i++) {
+      const index = Math.floor(Math.random() * alumnosTemp.length);
+      trio.push(alumnosTemp.splice(index, 1)[0]);
+    }
+    trios.push(trio);
+  }
+
+  // Si queda algún alumno, se añade a un trío existente o se forma un trío nuevo
+  if (alumnosTemp.length > 0) {
+    trios[0] = trios[0].concat(alumnosTemp);
+  }
+
+  return trios;
+}
+
+// Obtener los tríos
+const trios = emparejarAlumnosEnTrios(alumnos);
+
+// Mostrar los tríos
+console.log("Tríos:");
+for (let i = 0; i < 2; i++) {
+  console.log(trios[i].join(' - '));
+}
+
